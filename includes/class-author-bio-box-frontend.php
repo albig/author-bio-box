@@ -37,6 +37,7 @@ class Author_Bio_Box_Frontend {
 	 */
 	public function enqueue_styles() {
 		wp_register_style( 'author-bio-box-styles', Author_Bio_Box::get_assets_url() . 'css/author-bio-box.css', array(), Author_Bio_Box::VERSION, 'all' );
+		wp_register_style( 'author-bio-icomoon-styles', Author_Bio_Box::get_assets_url() . 'icomoon/style.css', array(), Author_Bio_Box::VERSION, 'all' );
 	}
 
 	/**
@@ -69,6 +70,7 @@ class Author_Bio_Box_Frontend {
 
 		// Load the styles.
 		wp_enqueue_style( 'author-bio-box-styles' );
+		wp_enqueue_style( 'author-bio-icomoon-styles' );
 
 		// Set the gravatar size.
 		$gravatar_size = (int) $settings['gravatar'];
@@ -85,7 +87,6 @@ class Author_Bio_Box_Frontend {
 				'website'    => get_the_author_meta( 'user_url' ),
 				'facebook'   => get_the_author_meta( 'facebook' ),
 				'twitter'    => get_the_author_meta( 'twitter' ),
-				'googleplus' => get_the_author_meta( 'googleplus' ),
 				'linkedin'   => get_the_author_meta( 'linkedin' ),
 				'flickr'     => get_the_author_meta( 'flickr' ),
 				'tumblr'     => get_the_author_meta( 'tumblr' ),
@@ -93,6 +94,7 @@ class Author_Bio_Box_Frontend {
 				'youtube'    => get_the_author_meta( 'youtube' ),
 				'instagram'  => get_the_author_meta( 'instagram' ),
 				'pinterest'  => get_the_author_meta( 'pinterest' ),
+				'mastodon'  => get_the_author_meta( 'mastodon' ),
 			)
 		);
 
@@ -112,7 +114,7 @@ class Author_Bio_Box_Frontend {
 
 		foreach ( $social as $key => $value ) {
 			if ( ! empty( $value ) ) {
-				$html .= '<a target="_blank" rel="nofollow noopener noreferrer" href="' . esc_url( $value ) . '" class="bio-icon bio-icon-' . esc_attr( $key ) . '"></a>';
+				$html .= '<a target="_blank" rel="nofollow noopener noreferrer me" class="bio-links" href="' . esc_url( $value ) . '" title="' . ucfirst(esc_attr( $key )) . '"><span class="icon-' . esc_attr( $key ) . '"></span></a>';
 			}
 		}
 

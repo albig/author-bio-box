@@ -153,6 +153,7 @@ class Author_Bio_Box_Admin {
 		$methods['youtube']    = __( 'YouTube', 'author-bio-box' );
 		$methods['instagram']  = __( 'Instagram', 'author-bio-box' );
 		$methods['pinterest']  = __( 'Pinterest', 'author-bio-box' );
+		$methods['mastodon']  = __( 'Mastodon', 'author-bio-box' );
 
 		// Remove old methods.
 		unset( $methods['aim'] );
